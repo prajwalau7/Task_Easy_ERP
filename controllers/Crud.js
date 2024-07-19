@@ -4,11 +4,11 @@ const { where } = require("sequelize");
 const router = express.Router();
 const Authorization = require("../middleware/Authorization");
 
-router.get("/protected-route", Authorization, (req, res) => {
-  res.json({ message: "This is a protected route", user: req.user });
-});
+// router.get("/protected-route", Authorization, (req, res) => {
+//   res.json({ message: "This is a protected route", user: req.user });
+// });
 
-router.post("/insert", async (req, res) => {
+router.post("/insert", Authorization, async (req, res) => {
   try {
     const { fname, email } = req.body;
 
@@ -32,7 +32,7 @@ router.get("/select", Authorization, async (req, res) => {
 });
 
 //findByID
-router.get("/select/:id", async (req, res) => {
+router.get("/select/:id", Authorization, async (req, res) => {
   const { id } = req.params;
   try {
     const select = await User.findByPk(id);
@@ -48,7 +48,7 @@ router.get("/select/:id", async (req, res) => {
 });
 
 //put
-router.put("/update/:id", async (req, res) => {
+router.put("/update/:id", Authorization, async (req, res) => {
   const { id } = req.params;
   const updates = req.body;
   try {
@@ -71,7 +71,7 @@ router.put("/update/:id", async (req, res) => {
 });
 
 //delete
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/delete/:id", Authorization, async (req, res) => {
   const { id } = req.params;
   try {
     const user = await User.findByPk(id);
