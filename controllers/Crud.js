@@ -11,7 +11,7 @@ router.post("/insert", Authorization, async (req, res) => {
   try {
     const { fname, lname, email } = req.body;
 
-    const insert = await new User(fname, lname, email);
+    const insert = await new User({ fname, lname, email });
     res.status(200).json({ msg: "Inserted :", insert });
   } catch (error) {
     console.log("Error while insrting data", error);
