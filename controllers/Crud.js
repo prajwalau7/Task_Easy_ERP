@@ -10,9 +10,9 @@ const Authorization = require("../middleware/Authorization");
 
 router.post("/insert", Authorization, async (req, res) => {
   try {
-    const { fname, email } = req.body;
+    const { fname, lname, email } = req.body;
 
-    const insert = await User.findOne({ where: { email: email } });
+    const insert = await new User(fname, lname, email);
     res.status(200).json({ msg: "Inserted :", insert });
   } catch (error) {
     console.log("Error while insrting data", error);
