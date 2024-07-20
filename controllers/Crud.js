@@ -1,6 +1,5 @@
 const express = require("express");
 const { User } = require("../sequelizeConnect");
-const { where } = require("sequelize");
 const router = express.Router();
 const Authorization = require("../middleware/Authorization");
 
