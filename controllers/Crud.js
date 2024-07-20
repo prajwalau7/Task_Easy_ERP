@@ -22,7 +22,7 @@ router.post("/insert", Authorization, async (req, res) => {
 //get
 router.get("/select", Authorization, async (req, res) => {
   try {
-    const select = await User.findAll({});
+    const select = await User.findAll();
     res.status(200).json({ msg: "All data", select });
   } catch (error) {
     console.log("Error while fetch data", error);
