@@ -11,7 +11,7 @@ router.post("/authenticate", async (req, res) => {
   try {
     const { fname, email, password } = req.body;
 
-    const checkData = await User.findOne({ where: { email } });
+    const checkData = await User.findOne({ where: { fname } });
     if (checkData) {
       return res.status(500).json({ message: "fname is already in use" });
     }
